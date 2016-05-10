@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -21,12 +22,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homebg.png" translatesAutoresizingMaskIntoConstraints="NO" id="zsW-x0-qLD">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0006397" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfi-pM-cAA">
-                                <rect key="frame" x="20" y="164" width="200" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="E2W-iV-eHd"/>
-                                    <constraint firstAttribute="width" constant="200" id="iHz-Jk-CgZ"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0006397" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfi-pM-cAA">
+                                <rect key="frame" x="20" y="138" width="200" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="44"/>
                                 <color key="textColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -41,12 +38,9 @@
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kP4-ho-SVm" customClass="ScaleBackButton">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kP4-ho-SVm" customClass="ScaleBackButton">
                                 <rect key="frame" x="16" y="218" width="130" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="6W9-Kg-w3d"/>
-                                    <constraint firstAttribute="height" constant="39" id="dwY-Ii-Aou"/>
-                                </constraints>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="我的订单" backgroundImage="dem_hx.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -55,12 +49,8 @@
                                     <action selector="myOrderBtn:" destination="v6g-fv-9Ts" eventType="touchUpInside" id="eMb-qh-WIA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqF-wa-RQx" customClass="ScaleBackButton">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqF-wa-RQx" customClass="ScaleBackButton">
                                 <rect key="frame" x="170" y="218" width="130" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="Kzh-u9-xBV"/>
-                                    <constraint firstAttribute="width" constant="130" id="hU7-H1-1Q5"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="供货需求" backgroundImage="dem_hx.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -69,24 +59,8 @@
                                     <action selector="supplyDemand:" destination="v6g-fv-9Ts" eventType="touchUpInside" id="HDD-mg-2ji"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMy-ic-Ali" customClass="ScaleBackButton">
-                                <rect key="frame" x="16" y="336" width="288" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="Agy-0e-mPw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="新品上架" backgroundImage="dem_hx.png">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="newPartsButtonPressed:" destination="v6g-fv-9Ts" eventType="touchUpInside" id="TdM-R7-MsU"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSj-zK-Ym9" customClass="ScaleBackButton">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSj-zK-Ym9" customClass="ScaleBackButton">
                                 <rect key="frame" x="16" y="277" width="288" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="wfE-sq-9SP"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="我的钱包" backgroundImage="dem_hx.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -95,26 +69,46 @@
                                     <action selector="myCaseBtn:" destination="v6g-fv-9Ts" eventType="touchUpInside" id="RDI-QG-gI9"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMy-ic-Ali" customClass="ScaleBackButton">
+                                <rect key="frame" x="16" y="399" width="288" height="39"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="新品上架" backgroundImage="dem_hx.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="newPartsButtonPressed:" destination="v6g-fv-9Ts" eventType="touchUpInside" id="TdM-R7-MsU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MDc-1G-WVN" firstAttribute="top" secondItem="HDw-Tk-twK" secondAttribute="bottom" constant="115" id="2So-KB-pgZ"/>
-                            <constraint firstItem="RSj-zK-Ym9" firstAttribute="leading" secondItem="GBq-i4-6E8" secondAttribute="leadingMargin" id="Bsu-0M-RQ2"/>
+                            <constraint firstItem="eMy-ic-Ali" firstAttribute="leading" secondItem="GBq-i4-6E8" secondAttribute="leadingMargin" constant="-4" id="3V1-df-XVU"/>
+                            <constraint firstItem="kqF-wa-RQx" firstAttribute="top" secondItem="kP4-ho-SVm" secondAttribute="top" id="DG8-dw-riw"/>
                             <constraint firstItem="9aG-Pm-Pq4" firstAttribute="top" secondItem="zsW-x0-qLD" secondAttribute="bottom" id="Kp6-Ac-dTb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eMy-ic-Ali" secondAttribute="trailing" constant="-4" id="NzN-iS-ZSW"/>
+                            <constraint firstItem="kqF-wa-RQx" firstAttribute="leading" secondItem="kP4-ho-SVm" secondAttribute="trailing" constant="24" id="PVT-a5-EcK"/>
+                            <constraint firstItem="kP4-ho-SVm" firstAttribute="top" secondItem="Zfi-pM-cAA" secondAttribute="bottom" constant="20" id="Qkd-Ea-gOm"/>
                             <constraint firstItem="Zfi-pM-cAA" firstAttribute="top" secondItem="HDw-Tk-twK" secondAttribute="bottom" constant="100" id="SIu-3p-u8T"/>
-                            <constraint firstItem="RSj-zK-Ym9" firstAttribute="top" secondItem="kqF-wa-RQx" secondAttribute="bottom" constant="20" id="Xzm-PY-0vD"/>
+                            <constraint firstItem="kP4-ho-SVm" firstAttribute="width" secondItem="Zfi-pM-cAA" secondAttribute="height" multiplier="65:17" id="Uq2-uC-hSw"/>
+                            <constraint firstItem="RSj-zK-Ym9" firstAttribute="height" secondItem="kP4-ho-SVm" secondAttribute="height" id="asY-Qb-KKE"/>
                             <constraint firstItem="zsW-x0-qLD" firstAttribute="leading" secondItem="GBq-i4-6E8" secondAttribute="leading" id="b3X-if-OCQ"/>
-                            <constraint firstItem="eMy-ic-Ali" firstAttribute="top" secondItem="RSj-zK-Ym9" secondAttribute="bottom" constant="20" id="bDY-Pe-vEH"/>
-                            <constraint firstItem="RSj-zK-Ym9" firstAttribute="trailing" secondItem="GBq-i4-6E8" secondAttribute="trailingMargin" id="bp0-eO-92E"/>
-                            <constraint firstAttribute="trailing" secondItem="kqF-wa-RQx" secondAttribute="trailing" constant="20" id="dEo-fW-Cp4"/>
-                            <constraint firstItem="kqF-wa-RQx" firstAttribute="top" secondItem="Zfi-pM-cAA" secondAttribute="bottom" constant="20" id="dyH-lz-x8q"/>
-                            <constraint firstItem="kP4-ho-SVm" firstAttribute="leading" secondItem="GBq-i4-6E8" secondAttribute="leadingMargin" id="gff-O2-LCD"/>
-                            <constraint firstItem="eMy-ic-Ali" firstAttribute="trailing" secondItem="GBq-i4-6E8" secondAttribute="trailingMargin" id="luT-MP-J3q"/>
-                            <constraint firstItem="kP4-ho-SVm" firstAttribute="top" secondItem="Zfi-pM-cAA" secondAttribute="bottom" constant="20" id="nh2-Hz-4qB"/>
+                            <constraint firstItem="9aG-Pm-Pq4" firstAttribute="top" secondItem="eMy-ic-Ali" secondAttribute="bottom" constant="130" id="bBf-Fq-1Dt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RSj-zK-Ym9" secondAttribute="trailing" constant="-4" id="czB-hj-d9e"/>
+                            <constraint firstItem="kqF-wa-RQx" firstAttribute="trailing" secondItem="GBq-i4-6E8" secondAttribute="trailingMargin" id="f3e-5k-g9A"/>
+                            <constraint firstItem="kP4-ho-SVm" firstAttribute="leading" secondItem="GBq-i4-6E8" secondAttribute="leadingMargin" constant="-4" id="g3w-aa-LAr"/>
+                            <constraint firstItem="RSj-zK-Ym9" firstAttribute="leading" secondItem="GBq-i4-6E8" secondAttribute="leadingMargin" constant="-4" id="ghB-LN-Pq7"/>
+                            <constraint firstItem="kqF-wa-RQx" firstAttribute="width" secondItem="kP4-ho-SVm" secondAttribute="width" id="jrg-sh-qx2"/>
+                            <constraint firstItem="kqF-wa-RQx" firstAttribute="top" secondItem="MDc-1G-WVN" secondAttribute="bottom" constant="18" id="kZq-Jh-s2l"/>
+                            <constraint firstItem="RSj-zK-Ym9" firstAttribute="top" secondItem="kqF-wa-RQx" secondAttribute="bottom" constant="20" id="l5K-Yk-p6s"/>
+                            <constraint firstItem="Zfi-pM-cAA" firstAttribute="width" secondItem="kP4-ho-SVm" secondAttribute="height" multiplier="200:39" id="oiO-X3-leY"/>
+                            <constraint firstItem="kqF-wa-RQx" firstAttribute="height" secondItem="kP4-ho-SVm" secondAttribute="height" id="pEn-TV-2Na"/>
                             <constraint firstAttribute="trailing" secondItem="zsW-x0-qLD" secondAttribute="trailing" id="qQL-hf-fEs"/>
+                            <constraint firstItem="eMy-ic-Ali" firstAttribute="height" secondItem="kP4-ho-SVm" secondAttribute="height" id="rP5-nN-QVT"/>
+                            <constraint firstItem="eMy-ic-Ali" firstAttribute="top" secondItem="RSj-zK-Ym9" secondAttribute="bottom" constant="20" id="s0k-Mo-vhQ"/>
                             <constraint firstAttribute="trailing" secondItem="MDc-1G-WVN" secondAttribute="trailing" constant="20" id="sUz-x0-fmm"/>
-                            <constraint firstItem="eMy-ic-Ali" firstAttribute="leading" secondItem="GBq-i4-6E8" secondAttribute="leadingMargin" id="sij-iW-IJz"/>
                             <constraint firstItem="Zfi-pM-cAA" firstAttribute="leading" secondItem="GBq-i4-6E8" secondAttribute="leading" constant="20" id="veH-M1-W04"/>
+                            <constraint firstItem="eMy-ic-Ali" firstAttribute="width" secondItem="RSj-zK-Ym9" secondAttribute="width" id="wXU-ic-cgv"/>
                             <constraint firstItem="zsW-x0-qLD" firstAttribute="top" secondItem="HDw-Tk-twK" secondAttribute="bottom" id="yv7-qz-A36"/>
                         </constraints>
                     </view>

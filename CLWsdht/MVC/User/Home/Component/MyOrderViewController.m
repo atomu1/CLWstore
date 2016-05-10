@@ -11,6 +11,12 @@
 #import "MaintainOrderViewController.h"
 #import "TardeCancelOrderViewController.h"
 #import "ReturnGoodsViewController.h"
+#import "AFNetworking.h"//主要用于网络请求方法
+#import "UIKit+AFNetworking.h"//里面有异步加载图片的方法
+#import "MJExtension.h"
+#import "BaseHeader.h"
+#import "SingleCase.h"
+#import "NSJSON+YBClass.h"
 
 @interface MyOrderViewController ()
 //需求已报价
@@ -28,10 +34,76 @@
 @property (weak, nonatomic) IBOutlet UILabel *buyPartOrderEight;//退货申请
 @property (weak, nonatomic) IBOutlet UILabel *buyPartOrderNine;//退货待收货
 
+@property (nonatomic, strong) NSString *userID;
 
 @end
 
 @implementation MyOrderViewController
+
+- (void)viewWillAppear:(BOOL)animated{
+    SingleCase *singleCase = [SingleCase sharedSingleCase];
+    _userID = singleCase.str;
+
+    [self UsrAggregate];
+}
+
+- (void)UsrAggregate{
+    [SVProgressHUD showWithStatus:k_Status_Load];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,@"Aggregate.asmx/StoreAggregate"];
+    NSDictionary *paramDict = @{
+                                @"id":_userID
+                                };
+    [ApplicationDelegate.httpManager POST:urlStr
+                               parameters:paramDict
+                                 progress:^(NSProgress * _Nonnull uploadProgress) {}
+                                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                      //http请求状态
+                                      if (task.state == NSURLSessionTaskStateCompleted) {
+                                          NSError* error;
+                                          NSDictionary* jsonDic = [NSJSONSerialization
+                                                                   JSONObjectWithData:responseObject
+                                                                   options:kNilOptions
+                                                                   error:&error];
+                                          NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"Success"]];
+                                          if ([status isEqualToString:@"1"]) {
+                                              //成功
+                                              NSLog(@"------------------%@", jsonDic);
+                                              [self changeCorner:jsonDic];
+                                              [SVProgressHUD showSuccessWithStatus:  k_Success_Load];
+                                          } else {
+                                              //失败
+                                              [SVProgressHUD showErrorWithStatus:k_Error_WebViewError];
+                                              
+                                          }
+                                      } else {
+                                          [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                      }
+                                  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                      //请求异常
+                                      [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                  }];
+    
+}
+- (void)changeCorner:(NSDictionary *)dict
+{
+    NSString *str1 = [[NSString alloc] init];
+    str1 = [dict objectForKey:@"Data"];
+    
+    NSDictionary* dic1 = [NSDictionary dictWithJSON:str1];
+    NSLog(@"dic = %@",dic1);
+    _buyPartOrderFirst.text = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"POrder0"]];
+    _buyPartOrderSecond.text = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"POrder1"]];
+    _buyPartOrderTirth.text = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"POrder2"]];
+    _buyPartOrderFourth.text = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"POrder3"]];
+    _buyPartOrderFifth.text = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"POrder4"]];
+    _buyPartOrderSixth.text = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"POrder100"]];
+    _buyPartOrderSeven.text = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"POrderCancel"]];
+    _buyPartOrderEight.text = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"POrderRefund"]];
+    _buyPartOrderNine.text = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"POrderRefundDelivery"]];
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

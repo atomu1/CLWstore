@@ -17,11 +17,20 @@
 #import "UserInfo.h"
 #import "SingleCase.h"
 
+#define rowNum (NSInteger)((kScreen_Height - 100) / 96 + 1)
+
 @interface TardeCancelOrderViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *firstLabel;
+@property (weak, nonatomic) IBOutlet UILabel *secondLabel;
 
 @property (nonatomic, strong) UITableView *orderTableView;
 @property (nonatomic, strong) NSMutableArray *partlistArr;
 @property (nonatomic, copy) NSString *storeId;
+
+@property (nonatomic, strong) NSMutableArray *modelArr;
+@property (nonatomic, strong) NSMutableArray *showModel;
+@property (nonatomic, assign) NSInteger times;
+@property (nonatomic, assign) NSInteger totalNum;
 
 @end
 
@@ -33,10 +42,32 @@
     _partlistArr = [[NSMutableArray alloc] initWithCapacity:0];
     SingleCase *singleCase = [SingleCase sharedSingleCase];
     _storeId = singleCase.str;
-
+    
+    _times  = 0;
+    self.showModel = [NSMutableArray arrayWithCapacity:0];
+    
     [self GetOrderListByNetwork];
     [self setUpView];
+    [self changLabel];
+    [self setHeaderRefresh];
+    [self setFooterRefresh];
+    
 }
+
+/**
+ *  当前选中的页面指示
+ *
+ */
+- (void)changLabel{
+    if ([_orderState  isEqual: @"100"]) {
+        [_secondLabel setBackgroundColor:[UIColor whiteColor]];
+        [_firstLabel setBackgroundColor:[UIColor redColor]];
+    }else if ([_orderState  isEqual: @"-1"]){
+        [_firstLabel setBackgroundColor:[UIColor whiteColor]];
+        [_secondLabel setBackgroundColor:[UIColor redColor]];
+    }
+}
+
 
 //UI界面
 -(void)setUpView{
@@ -51,17 +82,25 @@
 //已交易按钮
 - (IBAction)tardeBtn:(UIButton *)sender {
     _orderState = @"100";
+    [self changLabel];
     [self GetOrderListByNetwork];
 }
 //已取消按钮
 - (IBAction)cancelBtn:(UIButton *)sender {
     _orderState = @"-1";
+    [self changLabel];
     [self GetOrderListByNetwork];
 }
+
+
 
 //获取我的订单
 - (void)GetOrderListByNetwork{
     [SVProgressHUD showWithStatus:k_Status_Load];
+    if (_totalNum == 0) {
+        _totalNum = 10;
+    }
+    
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,@"Usr.asmx/GetOrdersList"];
     NSDictionary *paramDict = @{
@@ -70,7 +109,7 @@
                                 @"garageId":@"",
                                 @"storeId":_storeId,
                                 @"start":[NSString stringWithFormat:@"%d",0],
-                                @"limit":[NSString stringWithFormat:@"%d",10]
+                                @"limit":[NSString stringWithFormat:@"%ld", _totalNum]
                                 };
     
     [ApplicationDelegate.httpManager POST:urlStr
@@ -90,8 +129,7 @@
                                               NSLog(@"------------------%@", jsonDic);
                                               OrderModel *orderModel = [[OrderModel alloc] init];
                                               _partlistArr = [orderModel assignModelWithDict:jsonDic];
-                                              NSLog(@"zzzzzzzzzzz%@",_partlistArr);
-                                              [_orderTableView reloadData];
+                                              [self datprocessingWith:_partlistArr];
                                               [SVProgressHUD showSuccessWithStatus:  k_Success_Load];
                                               
                                           } else {
@@ -99,17 +137,78 @@
                                               [SVProgressHUD showErrorWithStatus:k_Error_WebViewError];
                                               
                                           }
-                                          
+                                          [_orderTableView.mj_header endRefreshing];
                                       } else {
                                           [SVProgressHUD showErrorWithStatus:k_Error_Network];
                                       }
-                                      
+                                      [_orderTableView.mj_header endRefreshing];
                                   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                                       //请求异常
+                                      [_orderTableView.mj_header endRefreshing];
                                       [SVProgressHUD showErrorWithStatus:k_Error_Network];
                                   }];
     
 }
+
+/**
+ *  上下拉刷新
+ */
+#pragma mark - 上拉刷新
+- (void)setHeaderRefresh {
+    
+    _orderTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _modelArr = [NSMutableArray arrayWithCapacity:0];
+        _showModel = [NSMutableArray arrayWithCapacity:0];
+        _totalNum = 0;
+        _times = 0;
+        [self GetOrderListByNetwork];
+        
+        [_orderTableView.mj_header beginRefreshing];
+        [_orderTableView reloadData];
+    }];
+}
+
+
+
+#pragma mark - 下拉加载
+- (void)setFooterRefresh {
+    _orderTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
+        if (_totalNum >= 10&&_times == 1) {
+            [self GetOrderListByNetwork];
+        } else {
+            for (NSInteger i = _times * rowNum; i < _modelArr.count; i++) {
+                [_showModel addObject:_modelArr[i]];
+                if (i ==( (1 + _times) * rowNum) - 1) {
+                    break;
+                }
+            }
+            _times++;
+        }
+        if (_showModel.count == _modelArr.count) {
+            [SVProgressHUD showInfoWithStatus:@"没有更多可以加载了"];
+        }
+        [_orderTableView.mj_footer endRefreshing];
+        [_orderTableView reloadData];
+    }];
+}
+
+
+/**
+ *  刷新
+ */
+- (void)datprocessingWith:(NSMutableArray *)jsonArr {
+    for (NSInteger i = _times*rowNum; i < jsonArr.count; i ++) {
+        [_showModel addObject:jsonArr[i]];
+        if (i == ((1 + _times) * rowNum)-1) {
+            break;
+        }
+    }
+    _times ++;
+    
+    [_orderTableView reloadData];
+}
+
 
 
 #pragma mark -- UITableViewDataSource
@@ -225,7 +324,7 @@
     }
     OrderModel *OM=_partlistArr[indexPath.section];
     GoodModel *GM=OM.PartsList[indexPath.row];
-    [cell assginOrderWithModel:GM];
+    [cell setOrderWithModel:GM andWtihState:_orderState andWithOrderModel:OM];
     return cell;
 }
 

@@ -8,6 +8,7 @@
 
 #import "WithdrawalView.h"
 #import "BaseHeader.h"
+#import "UserInfo.h"
 
 @implementation WithdrawalView
 {
@@ -39,7 +40,7 @@
         return;
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@"a62f4cbb-9bfc-496e-b161-29606eff235a" forKey:@"usrId"];
+    [dic setObject:ApplicationDelegate.userInfo.user_Id forKey:@"usrId"];
     [dic setObject:@"2" forKey:@"usrType"];
     [dic setObject:moneyField.text forKey:@"val"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"withDrawal" object:nil userInfo:dic];

@@ -214,7 +214,7 @@
     }
     OrderModel *OM=_partlistArr[indexPath.section];
     GoodModel *GM=OM.PartsList[indexPath.row];
-    [cell assginOrderWithModel:GM];
+    [cell setOrderWithModel:GM andWtihState:_orderState andWithOrderModel:OM];
     
     return cell;
 }

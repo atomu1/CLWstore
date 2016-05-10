@@ -43,6 +43,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _telTextField.text = @"13351784891";
+    _passWordTextField.text = @"123";
     
     self.navigationItem.hidesBackButton = YES;
     self.hidesBottomBarWhenPushed = YES;

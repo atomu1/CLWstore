@@ -295,19 +295,20 @@
 
 
 - (IBAction)supplyDemand:(id)sender { /* 供货需求 */
+    [self setHidesBottomBarWhenPushed:YES];
     SupplierReceiveViewController *supplier = [[SupplierReceiveViewController alloc] init];
     [self.navigationController pushViewController:supplier animated:YES];
-    
+    [self setHidesBottomBarWhenPushed:NO];
 }
 
 #pragma mark - 新品上架
 - (IBAction)newPartsButtonPressed:(UIButton *)sender {
-
+    [self setHidesBottomBarWhenPushed:YES];
     //AddNewPartsVC *newPartsVC = [[AddNewPartsVC alloc] initWithNibName:@"AddNewPartsVC" bundle:nil];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MyShop" bundle:nil];
     MyShopReleaseVC *newPartsVC = [storyboard instantiateViewControllerWithIdentifier:@"MyShopReleaseVC"];
     [self.navigationController pushViewController:newPartsVC animated:YES];
-    
+    [self setHidesBottomBarWhenPushed:NO];
 }
 
 

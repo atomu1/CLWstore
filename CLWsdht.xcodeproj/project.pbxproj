@@ -211,6 +211,7 @@
 		DF563CB91CBC7DFF00C8C031 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF563CB01CBC7DFF00C8C031 /* TextInputCell.m */; };
 		DF563CBA1CBC7DFF00C8C031 /* TextInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF563CB11CBC7DFF00C8C031 /* TextInputCell.xib */; };
 		DF563CBD1CBCB7BD00C8C031 /* BaseTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF563CBC1CBCB7BD00C8C031 /* BaseTitleCell.m */; };
+		DF6A52AD1CE17ABB0085BD1C /* NSJSON+YBClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6A52AC1CE17ABB0085BD1C /* NSJSON+YBClass.m */; };
 		DF7507881CC8799B00BA40EB /* splash01.png in Resources */ = {isa = PBXBuildFile; fileRef = DF7507871CC8799B00BA40EB /* splash01.png */; };
 		DFDF69441CB8B495008EF043 /* city.json in Resources */ = {isa = PBXBuildFile; fileRef = DFDF69431CB8B495008EF043 /* city.json */; };
 		DFDF91FF1CB87074003A9EF5 /* homebg.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDF91FD1CB87074003A9EF5 /* homebg.png */; };
@@ -573,6 +574,8 @@
 		DF563CB11CBC7DFF00C8C031 /* TextInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputCell.xib; sourceTree = "<group>"; };
 		DF563CBB1CBCB7BD00C8C031 /* BaseTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTitleCell.h; sourceTree = "<group>"; };
 		DF563CBC1CBCB7BD00C8C031 /* BaseTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTitleCell.m; sourceTree = "<group>"; };
+		DF6A52AB1CE17ABB0085BD1C /* NSJSON+YBClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSON+YBClass.h"; sourceTree = "<group>"; };
+		DF6A52AC1CE17ABB0085BD1C /* NSJSON+YBClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSON+YBClass.m"; sourceTree = "<group>"; };
 		DF7507871CC8799B00BA40EB /* splash01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash01.png; sourceTree = "<group>"; };
 		DFDF69431CB8B495008EF043 /* city.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; lineEnding = 0; path = city.json; sourceTree = "<group>"; };
 		DFDF91FD1CB87074003A9EF5 /* homebg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homebg.png; sourceTree = "<group>"; };
@@ -1364,6 +1367,8 @@
 		C9A0D72E1C4A2E1E0028EEB8 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				DF6A52AB1CE17ABB0085BD1C /* NSJSON+YBClass.h */,
+				DF6A52AC1CE17ABB0085BD1C /* NSJSON+YBClass.m */,
 				C9622DCF1C4B40EE00AE849E /* DACircularProgress */,
 				C9622D6E1C4B40E700AE849E /* ZLPhotoLib */,
 				C9A0D72F1C4A2E2A0028EEB8 /* FSDropDownMenu */,
@@ -1642,6 +1647,7 @@
 				TargetAttributes = {
 					98E8C1641C49E50800310091 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = QNYGZ6JJ24;
 					};
 				};
 			};
@@ -1889,6 +1895,7 @@
 				2F8AF79B1CCF989800E8AAD0 /* CustomSegment.m in Sources */,
 				DF563CB41CBC7DFF00C8C031 /* MultilineTextInputCell.m in Sources */,
 				987D78BA1C9CF98D005A0A2C /* UserStoreModel.m in Sources */,
+				DF6A52AD1CE17ABB0085BD1C /* NSJSON+YBClass.m in Sources */,
 				DF0991781C55F676001B6F2D /* HomeVC.m in Sources */,
 				58099C341CCE5E6700BE194E /* DetailsTableViewCell.m in Sources */,
 				3A8248BC1CD366CC00A407B2 /* UserAddressEditVC.m in Sources */,
